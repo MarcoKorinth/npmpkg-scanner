@@ -9,6 +9,7 @@ class AppContext:
         self.package_name = None
         self.package_dir = None
         self._script_dir = path.dirname(path.abspath(__file__))
+        self.queries_dir = path.join(self._script_dir, "queries")
         self.tmp_dir = path.join(self._script_dir, ".tmp")
         self.verbose = False
 

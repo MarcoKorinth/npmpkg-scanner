@@ -46,6 +46,7 @@ def run(app_context: AppContext):
 
     codeql_helper = CodeQLHelper(app_context)
     codeql_helper.generate_database()
+    codeql_helper.apply_queries()
 
 
 if __name__ == "__main__":

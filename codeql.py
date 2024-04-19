@@ -7,7 +7,8 @@ class CodeQLHelper:
         self._app_context = app_context
         self.database_dir = path.join(self._app_context.tmp_dir, 'codeql_database')
         self.database_generated = False
-        self.report_file = path.join(self._app_context.tmp_dir, "codeql_report.json")
+        # self.report_file = path.join(self._app_context.tmp_dir, "codeql_report.csv")
+        self.report_file = "codeql_report.csv"
 
     def generate_database(self) -> bool:
         print("Generating CodeQL database..")

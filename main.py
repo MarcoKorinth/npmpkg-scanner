@@ -2,6 +2,7 @@
 
 from argparse import ArgumentParser
 from appcontext import AppContext
+from npmhelper import NPMHelper
 from codeql import CodeQLHelper
 from os import path
 
@@ -30,7 +31,7 @@ def main() -> None:
         pass
     except Exception as e:
         print(e)
-        print("Application exited with errors")
+        print("\nApplication exited with errors")
         if not app_context.verbose:
             print("Try running with `--verbose` for more information")
         app_context.exit(1)
@@ -39,10 +40,13 @@ def main() -> None:
 
 
 def run(app_context: AppContext):
-    if app_context.package_dir is None:
-        print("ERROR! downloading packages is not supported yet.")
-        print("Please provide a local code repository with the `--src` option")
-        raise Exception()
+    if app_context.package_name is not None:
+        print(f"Downloading package {app_context.package_name}")
+        npm_helper = NPMHelper(app_context)
+        package_dir = npm_helper.download_package(app_context.package_name)
+        if package_dir is None:
+            raise Exception("Error while downloading npm package")
+        app_context.package_dir = package_dir
 
     codeql_helper = CodeQLHelper(app_context)
     codeql_helper.generate_database()

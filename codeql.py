@@ -28,8 +28,7 @@ class CodeQLHelper:
 
     def apply_queries(self):
         if not self.database_generated:
-            print("Error! Cannot apply queries, database has not been generated yet.")
-            return
+            raise Exception("Error! Cannot apply queries, database has not been generated yet.")
 
         print("Applying CodeQL queries to database..")
         process = self._app_context.exec(f"codeql database analyze {self.database_dir} " +

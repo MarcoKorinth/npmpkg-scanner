@@ -6,8 +6,8 @@ from sys import exit as sys_exit
 
 class AppContext:
     def __init__(self) -> None:
-        self.package_name = None
-        self.package_dir = None
+        self.package_name: str | None = None
+        self.package_dir: str | None = None
         self._script_dir = path.dirname(path.abspath(__file__))
         self.benchmarks_dir = path.join(self._script_dir, "benchmarks")
         self.queries_dir = path.join(self._script_dir, "queries")
@@ -27,8 +27,9 @@ class AppContext:
             rmtree(self.tmp_dir)
         sys_exit(exit_code)
 
-    def exec(self, cmd: str):
+    def exec(self, cmd: str, cwd: str | None = None):
+        cwd = self._script_dir if cwd is None else cwd
         return subprocess.run(cmd,
                               shell=True,
                               capture_output=(not self.verbose),
-                              cwd=self._script_dir)
+                              cwd=cwd)

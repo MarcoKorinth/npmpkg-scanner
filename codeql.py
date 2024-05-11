@@ -15,7 +15,7 @@ class CodeQLHelper:
         process = self._app_context.exec(
             f"codeql database create --language=javascript " +
             f"--source-root={self._app_context.package_dir} " +
-            f"-- {self.database_dir}")
+            f"{self.database_dir}")
 
         if process.returncode == 0:
             self.database_generated = True

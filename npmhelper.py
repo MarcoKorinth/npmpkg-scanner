@@ -1,8 +1,8 @@
 from appcontext import AppContext
-import json
-from os import makedirs
-from os.path import join, exists
+from os import listdir, makedirs
+from os.path import isfile, join, exists
 from shutil import rmtree
+import tarfile
 
 
 class NPMHelper:
@@ -13,17 +13,15 @@ class NPMHelper:
     def download_package(self, name: str) -> (str | None):
         if exists(self.project_path):
             rmtree(self.project_path)
-
         makedirs(self.project_path)
-        # create empty project
-        with open(join(self.project_path, "package.json"), "w") as package_json:
-            package_json.write(json.dumps({
-                "name": "temporary_project",
-                "version": "1.0.0"
-            }))
-        # download package with npm
-        process = self.app_context.exec(f"npm install --ignore-scripts --omit=optional \"{name}\"", cwd=self.project_path)
-        if process.returncode == 0:
-            return join(self.project_path, f"node_modules/{name}")
 
-        return
+        # download package
+        process = self.app_context.exec(f"npm pack \"{name}\"", cwd=self.project_path)
+
+        # extract package
+        if process.returncode == 0:
+            pkg_filename = [f for f in listdir(self.project_path) if isfile(join(self.project_path, f)) and f.index("tgz") > 0][0]
+            tar = tarfile.open(join(self.project_path, pkg_filename))
+            tar.extractall(self.project_path)
+            tar.close()
+            return join(self.project_path, "package")

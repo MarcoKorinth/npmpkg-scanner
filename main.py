@@ -41,7 +41,7 @@ def main() -> None:
 
 def run(app_context: AppContext):
     if app_context.package_name is not None:
-        print(f"Downloading package {app_context.package_name}")
+        print(f"Downloading package {app_context.package_name}..")
         npm_helper = NPMHelper(app_context)
         package_dir = npm_helper.download_package(app_context.package_name)
         if package_dir is None:

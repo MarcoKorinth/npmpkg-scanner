@@ -12,6 +12,8 @@ class AppContext:
         self.benchmarks_dir = path.join(self._script_dir, "benchmarks")
         self.queries_dir = path.join(self._script_dir, "queries")
         self.tmp_dir = path.join(self._script_dir, ".tmp")
+        self.output_file: str | None = None
+        self.force = False
         self.verbose = False
 
     def init_app(self):

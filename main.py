@@ -4,7 +4,7 @@ from argparse import ArgumentParser
 from appcontext import AppContext
 from npmhelper import NPMHelper
 from codeql import CodeQLHelper
-from os import path, remove
+from os import path
 
 
 def main() -> None:
@@ -24,7 +24,7 @@ def main() -> None:
     args = vars(parser.parse_args())
     app_context.package_dir = args["src"]
     app_context.package_name = args["package"]
-    app_context.output_file = args["output"] if args["output"] is not None else "codeql_report.csv"
+    app_context.output_file = args["output"] if args["output"] is not None else "codeql_report.json"
     app_context.force = args["force"]
     app_context.verbose = args["verbose"]
 

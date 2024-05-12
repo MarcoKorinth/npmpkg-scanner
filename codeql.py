@@ -30,7 +30,7 @@ class CodeQLHelper:
 
         print("Applying CodeQL queries to database..")
         process = self._app_context.exec(f"codeql database analyze {self.database_dir} " +
-            f"--format=csv --output={self._app_context.output_file} {self._app_context.queries_dir}")
+            f"--format=sarifv2.1.0 --output={self._app_context.output_file} {self._app_context.queries_dir}")
 
         if process.returncode == 0:
             print("Queries applied successfully")

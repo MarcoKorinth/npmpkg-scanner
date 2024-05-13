@@ -1,5 +1,6 @@
 from os import listdir
 from os.path import isdir, join
+import threading
 import time
 
 from termcolor import colored
@@ -16,14 +17,28 @@ class TestRunner:
     def __init__(self, app_context: AppContext) -> None:
         self._app_context = app_context
 
-    def run_tests(self):
+    def run_all(self, thread_count=4):
         print("Running benchmark tests..")
-        benchmarks = [f for f in listdir(self._app_context.benchmarks_dir) if isdir(join(self._app_context.benchmarks_dir, f))]
         start = time.time()
-        for benchmark in benchmarks:
-            self.run_test(benchmark)
+
+        benchmarks = [f for f in listdir(self._app_context.benchmarks_dir) if isdir(join(self._app_context.benchmarks_dir, f))]
+        # distribute tests on threads
+        thread_benchmarks = [[] for _ in range(thread_count)]
+        for (i, benchmark) in enumerate(benchmarks):
+            thread_benchmarks[i%thread_count].append(benchmark)
+        # start threads and join
+        threads = [threading.Thread(target=self.run_tests, args=[benchmarks]) for benchmarks in thread_benchmarks]
+        for t in threads:
+            t.start()
+        for t in threads:
+            t.join()
+
         test_duration = round(time.time() - start, 2)
         print(f"Finished {len(benchmarks)} benchmarks in {test_duration}s")
+
+    def run_tests(self, benchmarks):
+        for benchmark in benchmarks:
+            self.run_test(benchmark)
 
     def run_test(self, benchmark_name):
         self._app_context.package_dir = join(self._app_context.benchmarks_dir, benchmark_name)

@@ -51,7 +51,7 @@ def main() -> None:
 def run(app_context: AppContext):
     if app_context.test:
         test_runner = TestRunner(app_context)
-        test_runner.run_tests()
+        test_runner.run_all()
         return
 
     if (app_context.output_file

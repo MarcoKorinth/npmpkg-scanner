@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 
 from argparse import ArgumentParser
-import json
+from datetime import datetime
 from os import path
 
 from appcontext import AppContext
 from codeql import CodeQLHelper
 from npmhelper import NPMHelper
+from outputgenerator import OutputGenerator
 from testrunner import TestRunner
 
 
@@ -21,14 +22,18 @@ def main() -> None:
     parser_package.add_argument('-p', '--package', help="name of an NPM package")
     parser_package.add_argument('-s', '--src', help="path to the NPM-package to be scanned")
     parser_package.add_argument('-t', '--test', action="store_true", help="run benchmark tests")
-    parser.add_argument('-o', '--output', help="name of the generated file")
-    parser.add_argument('-f', '--force', action="store_true", help="override output file if it already exists")
+
+    timestamp = datetime.today().strftime("%Y-%m-%d_%H-%M")
+    parser.add_argument('-o', '--output', default=f"report_{timestamp}", help="name of the generated file")
+    parser.add_argument('-f', '--format', choices=["raw", "json"], default="json", help="format of the generated file")
+    parser.add_argument('--force', action="store_true", help="override output file if it already exists")
     parser.add_argument('-v', '--verbose', action="store_true", help="print codeql messages to stdout")
 
     args = vars(parser.parse_args())
     app_context.package_dir = args["src"]
     app_context.package_name = args["package"]
-    app_context.output_file = args["output"] if args["output"] is not None else "codeql_report.json"
+    app_context.output_file = args["output"]
+    app_context.output_format = args["format"]
     app_context.test = args["test"]
     app_context.force = args["force"]
     app_context.verbose = args["verbose"]
@@ -73,10 +78,12 @@ def run(app_context: AppContext):
     print("Database generated successfully")
     print("Applying CodeQL queries to database..")
     sarif_parser = codeql_helper.apply_queries()
-    if sarif_parser is not None and app_context.output_file:
+
+    if sarif_parser is not None:
         print("Queries applied successfully")
-        print("The following behaviors were found:")
-        print(sarif_parser.get_behaviors())
+        print("Generating outputfile..")
+        output_generator = OutputGenerator(app_context, sarif_parser)
+        output_generator.generate_outputfile()
 
 
 if __name__ == "__main__":

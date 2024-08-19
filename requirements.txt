@@ -1,1 +1,2 @@
 termcolor==2.4.0
+markdown-pdf==1.3

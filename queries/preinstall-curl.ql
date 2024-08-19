@@ -1,6 +1,6 @@
 /**
- * @name preinstall-curl
- * @description Detects preinstall script with curl command
+ * @name Curl command in preinstall hook
+ * @description Preinstall hook of the package executes a HTTP(s)-request using curl
  * @kind problem
  * @id preinstall-curl
  * @security-severity 7.0

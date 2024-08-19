@@ -1,6 +1,6 @@
 /**
- * @name preinstall-node
- * @description Detects preinstall script with node command
+ * @name Node command in preinstall hook
+ * @description Preinstall hook of the package executes the node command, to run a javascript script
  * @kind problem
  * @id preinstall-node
  * @security-severity 7.0

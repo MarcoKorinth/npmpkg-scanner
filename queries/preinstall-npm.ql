@@ -1,6 +1,6 @@
 /**
- * @name preinstall-npm
- * @description Detects preinstall script with npm command
+ * @name Npm command in preinstall hook
+ * @description Preinstall hook of the package executes the npm command. This might be used to execute other scripts in the package.json file.
  * @kind problem
  * @id preinstall-npm
  * @security-severity 7.0

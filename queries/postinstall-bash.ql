@@ -1,6 +1,6 @@
 /**
- * @name postinstall-bash
- * @description Detects postinstall script with bash command
+ * @name Bashscript in postinstall hook
+ * @description Postinstall hook of the package executes a bash command
  * @kind problem
  * @id postinstall-bash
  * @security-severity 7.0

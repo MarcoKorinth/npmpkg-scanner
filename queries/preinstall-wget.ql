@@ -1,6 +1,6 @@
 /**
- * @name preinstall-wget
- * @description Detects preinstall script with wget command
+ * @name Wget command in preinstall hook
+ * @description Preinstall hook of the package executes the wget command, which is commonly used to download files
  * @kind problem
  * @id preinstall-wget
  * @security-severity 7.0

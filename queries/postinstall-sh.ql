@@ -1,6 +1,6 @@
 /**
- * @name postinstall-sh
- * @description Detects postinstall script with sh command
+ * @name Shellscript in postinstall hook
+ * @description Postinstall hook of the package executes an sh command
  * @kind problem
  * @id postinstall-sh
  * @security-severity 7.0

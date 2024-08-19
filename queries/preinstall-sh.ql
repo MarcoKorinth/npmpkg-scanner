@@ -1,6 +1,6 @@
 /**
- * @name preinstall-sh
- * @description Detects preinstall script with sh command
+ * @name Shellscript in preinstall hook
+ * @description Preinstall hook of the package executes an sh command
  * @kind problem
  * @id preinstall-sh
  * @security-severity 7.0

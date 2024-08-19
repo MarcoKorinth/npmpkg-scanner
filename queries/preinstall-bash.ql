@@ -1,6 +1,6 @@
 /**
- * @name preinstall-bash
- * @description Detects preinstall script with bash command
+ * @name Bashscript in preinstall hook
+ * @description Preinstall hook of the package executes a bash command
  * @kind problem
  * @id preinstall-bash
  * @security-severity 7.0

@@ -1,6 +1,6 @@
 /**
- * @name postinstall-wget
- * @description Detects preinstall script with wget command
+ * @name Wget command in postinstall hook
+ * @description Postinstall hook of the package executes the wget command, which is commonly used to download files
  * @kind problem
  * @id postinstall-wget
  * @security-severity 7.0

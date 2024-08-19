@@ -1,6 +1,6 @@
 /**
- * @name postinstall-curl
- * @description Detects postinstall script with curl command
+ * @name Curl command in postinstall hook
+ * @description Postinstall hook of the package executes a HTTP(s)-request using curl
  * @kind problem
  * @id postinstall-curl
  * @security-severity 7.0

@@ -1,6 +1,6 @@
 /**
- * @name postinstall-node
- * @description Detects postinstall script with node command
+ * @name Node command in postinstall hook
+ * @description Postinstall hook of the package executes the node command, to run a javascript script
  * @kind problem
  * @id postinstall-node
  * @security-severity 7.0

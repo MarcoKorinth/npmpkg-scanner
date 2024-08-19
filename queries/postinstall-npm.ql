@@ -1,6 +1,6 @@
 /**
- * @name postinstall-npm
- * @description Detects postinstall script with npm command
+ * @name Npm command in postinstall hook
+ * @description Postinstall hook of the package executes the npm command. This might be used to execute other scripts in the package.json file.
  * @kind problem
  * @id postinstall-npm
  * @security-severity 7.0

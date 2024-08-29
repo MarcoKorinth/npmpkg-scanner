@@ -48,9 +48,9 @@ class OutputGenerator:
                 for result in results:
                     for loc in result["locations"]:
                         markdown += f"In `{loc["file"]}` (line: {loc["line"]}):\n"
-                    markdown += "\n```\n"
+                    markdown += "\n```javascript\n"
                     markdown += f"{result["text"]}\n"
-                    markdown += "```\n"
+                    markdown += "```\n\n"
 
         return markdown
 

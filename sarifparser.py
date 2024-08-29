@@ -31,9 +31,9 @@ class SarifParser:
                 "text": result["message"]["text"],
                 "locations": [{
                     "file": l["physicalLocation"]["artifactLocation"]["uri"],
-                    "line": (lambda s, e: f"{s}-{e}" if s != e else s)(
+                    "line": (lambda s, e: f"{s}-{e}" if e is not None else s)(
                         l["physicalLocation"]["region"]["startLine"], 
-                        l["physicalLocation"]["region"]["endLine"]
+                        l["physicalLocation"]["region"]["endLine"] if "endLine" in l["physicalLocation"]["region"] else None
                     )
                 } for l in result["locations"]]
             }

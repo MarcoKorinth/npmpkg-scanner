@@ -1,0 +1,17 @@
+{
+  "name": "examplepackage",
+  "version": "1.0.0",
+  "description": "example package",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [
+    "example"
+  ],
+  "author": "me",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.7.5"
+  }
+}

@@ -31,8 +31,9 @@ class CodeQLHelper:
             raise Exception("Error! Cannot apply queries, database has not been generated yet.")
 
         output = path.join(self._app_context.tmp_dir, f"{self.helper_id}.json")
-        process = self._app_context.exec(f"codeql database analyze {self.database_dir} " +
-            f"--format=sarifv2.1.0 --output={output} {self._app_context.queries_dir}")
+        process = self._app_context.exec(f"codeql database analyze " +
+            f"--format=sarifv2.1.0 --output={output} --threads=-2 " +
+            f"-- {self.database_dir} {self._app_context.queries_dir}")
 
         if process.returncode == 0:
             return SarifParser(output)

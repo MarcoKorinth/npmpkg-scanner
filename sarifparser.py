@@ -11,7 +11,7 @@ class SarifParser:
     @cache
     def get_behaviors(self):
         results = self.run["results"]
-        return [x["ruleId"] for x in results]
+        return list(set([x["ruleId"] for x in results]))
 
     def check_behavior(self, behavior):
         return behavior in self.get_behaviors()
@@ -24,7 +24,7 @@ class SarifParser:
         return behavior_properties.get(behavior)
 
     @cache
-    def get_results(self) -> dict:
+    def get_results(self) -> dict[str, list]:
         items = [(
             result["ruleId"],
             {
@@ -38,8 +38,14 @@ class SarifParser:
                 } for l in result["locations"]]
             }
         ) for result in self.run["results"]]
-        return {k: v for k, v in items}
+
+        results: dict[str, list] = {}
+        for id, result in items:
+            current = results.get(id, [])
+            current.append(result)
+            results[id] = current
+        return results
 
     @cache
     def get_behavior_results(self, behavior: str) -> list[dict] | None:
-        return [self.get_results()[behavior]] if behavior in self.get_results() else []
+        return self.get_results().get(behavior, [])

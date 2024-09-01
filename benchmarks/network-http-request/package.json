@@ -9,7 +9,7 @@
   "keywords": [
     "example"
   ],
-  "author": "me",
+  "author": "Marco Korinth",
   "license": "ISC",
   "dependencies": {
     "request": "^2.88.2"

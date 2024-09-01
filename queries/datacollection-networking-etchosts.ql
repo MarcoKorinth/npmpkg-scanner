@@ -10,18 +10,19 @@
 
 import javascript
 
-from JsonObject json, string suspiciousString
+from DbLocation loc, string suspiciousString
 where
   // check package.json
   exists(PackageJson manifest, string scriptName |
-    json = manifest.getScripts() and
-    suspiciousString = json.getPropStringValue(scriptName) and
-    suspiciousString.matches("%/etc/hosts%")
+    suspiciousString = manifest.getScripts().getPropStringValue(scriptName) and
+    suspiciousString.matches("%/etc/hosts%") and
+    loc = manifest.getLocation()
   )
   or
   // check code
   exists(StringLiteral str |
     suspiciousString = str.toString() and
-    suspiciousString.matches("%/etc/hosts%")
+    suspiciousString.matches("%/etc/hosts%") and
+    loc = str.getLocation()
   )
-select suspiciousString, suspiciousString
+select loc, suspiciousString

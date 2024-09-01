@@ -14,20 +14,21 @@ class IPDService extends string {
   IPDService() { this in ["ipconfig.io", "ifconfig.me"] }
 }
 
-from JsonObject json, string suspiciousString, IPDService ipdService
+from DbLocation loc, string suspiciousString, IPDService ipdService
 where
   // check package.json
   exists(PackageJson manifest, string scriptName, IPDService ipds |
-    json = manifest.getScripts() and
-    suspiciousString = json.getPropStringValue(scriptName) and
+    suspiciousString = manifest.getScripts().getPropStringValue(scriptName) and
     suspiciousString.matches("%" + ipds + "%") and
-    ipdService = ipds
+    ipdService = ipds and
+    loc = manifest.getLocation()
   )
   or
   // check code
   exists(StringLiteral str, IPDService ipds |
     str.toString().matches("%" + ipds + "%") and
     suspiciousString = str.toString() and
-    ipdService = ipds
+    ipdService = ipds and
+    loc = str.getLocation()
   )
-select suspiciousString, "IP detection service: " + ipdService.toString() + "\n" + suspiciousString
+select loc, "// IP detection service: " + ipdService.toString() + "\n" + suspiciousString

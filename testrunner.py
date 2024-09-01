@@ -51,7 +51,7 @@ class TestRunner:
         if sarif_parser.check_behavior(benchmark_name):
             print(f"{_passed_symbol} {benchmark_name} (passed)")
             if len(sarif_parser.get_behaviors()) != 1:
-                print(f"\tWarning! Multiple behaviors detected ({str(sarif_parser.get_behaviors())})")
+                print(f"\tMultiple behaviors detected ({str(sarif_parser.get_behaviors())})")
         else:
             print(f"{_failed_symbol} {benchmark_name} (failed)")
             print(f"\tDetected behaviors: {str(sarif_parser.get_behaviors())}")

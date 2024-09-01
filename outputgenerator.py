@@ -30,6 +30,11 @@ class OutputGenerator:
         markdown = "# NPM package analysis\n\n"
 
         markdown += "## Summary\n\n"
+
+        if len(self.sarif_parser.get_behaviors()) == 0:
+            markdown += f"No behaviors were detected."
+            return markdown
+
         markdown += "The following behaviors were detected:\n\n"
         for behavior in self.sarif_parser.get_behaviors():
             properties = self.sarif_parser.get_behavior_properties(behavior)

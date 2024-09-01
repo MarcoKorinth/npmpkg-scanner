@@ -35,6 +35,11 @@ Install python requirements:
 pip install -r requirements.txt
 ```
 
+Install CodeQL dependencies:
+```bash
+cd queries && codeql pack install && cd ..
+```
+
 ## Usage
 
 You can run the application by executing the `main.py` file.

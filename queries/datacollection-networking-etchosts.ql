@@ -5,7 +5,7 @@
  * @id datacollection-networking-etchosts
  * @security-severity 5.0
  * @problem.severity warning
- * @package-examples eslint-scope
+ * @author Marco Korinth
  */
 
 import javascript

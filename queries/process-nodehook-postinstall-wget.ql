@@ -5,7 +5,7 @@
  * @id process-nodehook-postinstall-wget
  * @security-severity 7.0
  * @problem.severity warning
- * @package-examples eslint-scope
+ * @author Marco Korinth
  */
 
 import javascript

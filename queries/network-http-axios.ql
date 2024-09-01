@@ -5,7 +5,7 @@
  * @id network-http-axios
  * @security-severity 3.0
  * @problem.severity warning
- * @package-examples eslint-scope
+ * @author Marco Korinth
  */
 
 import javascript

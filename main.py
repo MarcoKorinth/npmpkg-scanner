@@ -25,7 +25,7 @@ def main() -> None:
 
     timestamp = datetime.today().strftime("%Y-%m-%d_%H-%M")
     parser.add_argument('-o', '--output', default=f"report_{timestamp}", help="name of the generated file")
-    parser.add_argument('-f', '--format', choices=["raw", "markdown", "pdf"], default="pdf", help="format of the generated file")
+    parser.add_argument('-f', '--format', choices=["raw", "markdown", "pdf"], default="markdown", help="format of the generated file")
     parser.add_argument('--force', action="store_true", help="override output file if it already exists")
     parser.add_argument('-v', '--verbose', action="store_true", help="print codeql messages to stdout")
 

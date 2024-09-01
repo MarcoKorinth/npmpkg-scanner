@@ -1,8 +1,8 @@
 /**
- * @name Wget command in preinstall hook
- * @description Preinstall hook of the package executes the wget command, which is commonly used to download files
+ * @name Bashscript in preinstall hook
+ * @description Preinstall hook of the package executes a bash command
  * @kind problem
- * @id preinstall-wget
+ * @id process-nodehook-preinstall-bash
  * @security-severity 7.0
  * @problem.severity warning
  * @package-examples eslint-scope
@@ -15,5 +15,5 @@ where
   exists(PackageJson manifest | json = manifest.getScripts()) and
   scriptName = "preinstall" and
   scriptCode = json.getPropStringValue(scriptName) and
-  scriptCode.indexOf("wget") = 0
+  scriptCode.indexOf("bash") = 0
 select json, scriptCode

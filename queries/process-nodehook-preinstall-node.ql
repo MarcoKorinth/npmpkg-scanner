@@ -1,8 +1,8 @@
 /**
- * @name Curl command in preinstall hook
- * @description Preinstall hook of the package executes a HTTP(s)-request using curl
+ * @name Node command in preinstall hook
+ * @description Preinstall hook of the package executes the node command, to run a javascript script
  * @kind problem
- * @id preinstall-curl
+ * @id process-nodehook-preinstall-node
  * @security-severity 7.0
  * @problem.severity warning
  * @package-examples eslint-scope
@@ -15,5 +15,5 @@ where
   exists(PackageJson manifest | json = manifest.getScripts()) and
   scriptName = "preinstall" and
   scriptCode = json.getPropStringValue(scriptName) and
-  scriptCode.indexOf("curl") = 0
+  scriptCode.indexOf("node") = 0
 select json, scriptCode

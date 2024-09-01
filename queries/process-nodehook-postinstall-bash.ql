@@ -1,8 +1,8 @@
 /**
- * @name Node command in preinstall hook
- * @description Preinstall hook of the package executes the node command, to run a javascript script
+ * @name Bashscript in postinstall hook
+ * @description Postinstall hook of the package executes a bash command
  * @kind problem
- * @id preinstall-node
+ * @id process-nodehook-postinstall-bash
  * @security-severity 7.0
  * @problem.severity warning
  * @package-examples eslint-scope
@@ -13,7 +13,7 @@ import javascript
 from JsonObject json, string scriptName, string scriptCode
 where
   exists(PackageJson manifest | json = manifest.getScripts()) and
-  scriptName = "preinstall" and
+  scriptName = "postinstall" and
   scriptCode = json.getPropStringValue(scriptName) and
-  scriptCode.indexOf("node") = 0
+  scriptCode.indexOf("bash") = 0
 select json, scriptCode

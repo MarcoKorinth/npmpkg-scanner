@@ -1,8 +1,8 @@
 /**
- * @name Npm command in postinstall hook
- * @description Postinstall hook of the package executes the npm command. This might be used to execute other scripts in the package.json file.
+ * @name Curl command in preinstall hook
+ * @description Preinstall hook of the package executes a HTTP(s)-request using curl
  * @kind problem
- * @id postinstall-npm
+ * @id process-nodehook-preinstall-curl
  * @security-severity 7.0
  * @problem.severity warning
  * @package-examples eslint-scope
@@ -13,7 +13,7 @@ import javascript
 from JsonObject json, string scriptName, string scriptCode
 where
   exists(PackageJson manifest | json = manifest.getScripts()) and
-  scriptName = "postinstall" and
+  scriptName = "preinstall" and
   scriptCode = json.getPropStringValue(scriptName) and
-  scriptCode.indexOf("npm") = 0
+  scriptCode.indexOf("curl") = 0
 select json, scriptCode

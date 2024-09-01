@@ -1,8 +1,8 @@
 /**
- * @name Curl command in postinstall hook
- * @description Postinstall hook of the package executes a HTTP(s)-request using curl
+ * @name Shellscript in postinstall hook
+ * @description Postinstall hook of the package executes an sh command
  * @kind problem
- * @id postinstall-curl
+ * @id process-nodehook-postinstall-sh
  * @security-severity 7.0
  * @problem.severity warning
  * @package-examples eslint-scope
@@ -15,5 +15,5 @@ where
   exists(PackageJson manifest | json = manifest.getScripts()) and
   scriptName = "postinstall" and
   scriptCode = json.getPropStringValue(scriptName) and
-  scriptCode.indexOf("curl") = 0
+  scriptCode.indexOf("sh") = 0
 select json, scriptCode

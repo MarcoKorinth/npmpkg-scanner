@@ -2,7 +2,7 @@
  * @name Shellscript in preinstall hook
  * @description Preinstall hook of the package executes an sh command
  * @kind problem
- * @id preinstall-sh
+ * @id process-nodehook-preinstall-sh
  * @security-severity 7.0
  * @problem.severity warning
  * @package-examples eslint-scope

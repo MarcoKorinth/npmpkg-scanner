@@ -21,7 +21,7 @@ def main() -> None:
     parser_package = parser.add_mutually_exclusive_group(required=True)
     parser_package.add_argument('-p', '--package', help="name of an NPM package")
     parser_package.add_argument('-s', '--src', help="path to the NPM-package to be scanned")
-    parser_package.add_argument('-t', '--test', action="store_true", help="run benchmark tests")
+    parser_package.add_argument('-t', '--test', action="store_true", help="run tests")
 
     timestamp = datetime.today().strftime("%Y-%m-%d_%H-%M")
     parser.add_argument('-o', '--output', default=f"report_{timestamp}", help="name of the generated file")

@@ -9,7 +9,7 @@ class AppContext:
         self.package_name: str | None = None
         self.package_dir: str | None = None
         self._script_dir = path.dirname(path.abspath(__file__))
-        self.benchmarks_dir = path.join(self._script_dir, "benchmarks")
+        self.tests_dir = path.join(self._script_dir, "tests")
         self.queries_dir = path.join(self._script_dir, "queries")
         self.tmp_dir = path.join(self._script_dir, ".tmp")
         self.output_file: str | None = None

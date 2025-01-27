@@ -1,4 +1,4 @@
-# Code summary generator
+# NPM-package scanner for malicious behavior
 
 ## Installation
 
